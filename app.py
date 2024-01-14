@@ -8,12 +8,13 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-#======python的函數庫==========
+#======python的函數庫、py檔==========
 import tempfile, os
 import datetime
 import time
 import traceback
-#======python的函數庫==========
+import stock_id
+#======python的函數庫、py檔==========
 
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
@@ -49,6 +50,10 @@ def handle_message(event):
     message = event.message.text
     if re.match("你是誰",message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
+    elif "個股資訊" in message:
+        stock_n = stock_id(message[5:])
+        # cont = continue_after(message[5:])
+        line_bot_api.reply_message(event.reply_token,[TextMessage(stock_n)])#,cont)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

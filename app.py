@@ -13,7 +13,7 @@ import tempfile, os
 import datetime
 import time
 import traceback
-import stock_id
+from stock_info import stock_id
 #======python的函數庫、py檔==========
 
 app = Flask(__name__)
@@ -47,13 +47,12 @@ def callback():
 import re 
 @handler.add(MessageEvent, message=TextMessage) 
 def handle_message(event):
-    message = event.message.text
+    message = text = event.message.text
     if re.match("你是誰",message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
     elif "個股資訊" in message:
         stock_n = stock_id(message[5:])
-        # cont = continue_after(message[5:])
-        line_bot_api.reply_message(event.reply_token,[TextMessage(stock_n)])#,cont)
+        line_bot_api.reply_message(event.reply_token,[TextMessage(stock_n)])
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

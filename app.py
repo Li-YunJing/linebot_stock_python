@@ -22,7 +22,7 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 # Channel Secret
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
-line_bot_api.push_message('ID', TextSendMessage(text='歡迎開始使用'))
+# line_bot_api.push_message(user_id, TextSendMessage(text='歡迎開始使用'))
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -48,6 +48,7 @@ def handle_message(event):
     line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
 #主程式 
+import os
 if __name__ == "__main__":    
     port = int(os.environ.get('PORT', 5000))     
     app.run(host='0.0.0.0', port=port) 

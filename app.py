@@ -14,6 +14,7 @@ import datetime
 import time
 import traceback
 from stock_info import stock_id
+from weather import ask_weather
 #======python的函數庫、py檔==========
 
 app = Flask(__name__)
@@ -54,7 +55,8 @@ def handle_message(event):
         stock_n = stock_id(message[5:])
         line_bot_api.reply_message(event.reply_token,[TextMessage(stock_n)])
     elif "天氣" in message:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage("好熱"))
+        weather_feedback = ask_weather()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(weather_feedback))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

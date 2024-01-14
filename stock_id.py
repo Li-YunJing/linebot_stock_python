@@ -19,5 +19,6 @@ def stock_id(message):
         soup3 = soup.find("table",{"class":"b1 p4_4 r10 box_shadow"})
         soup_stock_info = soup3.find_all("td",{"bgcolor":"white"})
         mes = "股票代號 :{} \n股票名稱 : {} \n產業別 : {} \n市場 : {}\n成交價 : {} \n昨收 : {} \n漲跌價 : {} \n漲跌幅 : {} \n振幅 : {} \n開盤價 : {} \n最高價 : {} \n最低價 : {} \n資本額 : {} \n市值 : {}".format(soup_stock_name[0], soup_stock_name[1], soup_stock_info[1].text, soup_stock_info[2].text, soup_stock_data[0], soup_stock_data[1], soup_stock_data[2], soup_stock_data[3], soup_stock_data[4], soup_stock_data[5],soup_stock_data[6],soup_stock_data[7], soup_stock_info[4].text, soup_stock_info[5].text)
+        return mes
     except:
         return("請輸入正確的股票代號")

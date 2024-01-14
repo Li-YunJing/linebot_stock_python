@@ -53,7 +53,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
     elif "個股資訊" in message:
         stock_n = stock_id(message[5:])
-        line_bot_api.reply_message(event.reply_token,[TextMessage(stock_n)])
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage(stock_n)])
     elif "天氣" in message:
         weather_feedback = ask_weather()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(weather_feedback))

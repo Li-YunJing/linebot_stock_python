@@ -6,3 +6,4 @@ numpy
 talib == 0.4.0
 pandas
 datetime
+python==3.8

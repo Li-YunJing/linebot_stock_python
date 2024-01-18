@@ -15,6 +15,7 @@ import time
 import traceback
 from stock_info import stock_id
 from weather import ask_weather
+from stock_notify import *
 #======python的函數庫、py檔==========
 
 app = Flask(__name__)
@@ -57,6 +58,9 @@ def handle_message(event):
     elif "天氣" in message:
         weather_feedback = ask_weather()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(weather_feedback))
+    elif "關注清單" in message:
+        stock_notify_data = main()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(stock_notify_data))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

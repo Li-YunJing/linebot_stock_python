@@ -3,6 +3,6 @@ flask
 gunicorn
 bs4
 numpy
-talib == 0.4.28
+talib == 0.4.0
 pandas
 datetime

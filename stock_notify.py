@@ -1,18 +1,6 @@
 import datetime
-import sys
-import time
-import sqlite3
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options  # 瀏覽器配置
-from selenium.webdriver.support.ui import WebDriverWait  # 等待工具
-from selenium.webdriver.support import expected_conditions  # 預定義條件，供 WebDriverWait 使用
-from selenium.webdriver.common.by import By  # 定位元素
-from selenium.webdriver.chrome.service import Service
 import pandas as pd
-import yfinance as yf
 import talib
-import csv
 from db_select import *
 import numpy as np
 

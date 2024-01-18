@@ -2,3 +2,7 @@ line-bot-sdk
 flask
 gunicorn
 bs4
+numpy
+talib
+pandas
+datetime

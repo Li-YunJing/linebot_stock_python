@@ -106,11 +106,14 @@ def main():
     combined_signal = combined_signal.loc[combined_signal['Date'] == '2024-01-15']
 
     combined_signal['Action'] = np.where(combined_signal['Buy_Signal'] == True, '買入時機', np.where(combined_signal['Sell_Signal'] == True, '賣出時機', '繼續持有'))
-    for index, row in combined_signal.iterrows():
-        print(f"股票代號: {row['SYMBOL']}")
-        print(f"Date: {row['Date']}")
-        print(f"關注: {row['Action']}")
-        print("-------------------")
+    if combined_signal.empty:
+        print("今日無適當進出場時機，繼續持有等待時機!")
+    else:    
+        for index, row in combined_signal.iterrows():
+            print(f"股票代號: {row['SYMBOL']}")
+            print(f"Date: {row['Date']}")
+            print(f"關注: {row['Action']}")
+            print("-------------------")
     return ""
 # if __name__ == "__main__":
 #     main()

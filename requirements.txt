@@ -3,7 +3,7 @@ flask
 gunicorn
 bs4
 numpy
-talib-binary==0.4.0
+talib-binary==0.4.19
 pandas
 datetime
 python==3.8

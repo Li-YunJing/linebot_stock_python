@@ -52,9 +52,7 @@ import re
 @handler.add(MessageEvent, message=TextMessage) 
 def handle_message(event):
     message = text = event.message.text
-    if re.match("你是誰",message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
-    elif "個股資訊" in message:
+    if "個股資訊" in message:
         stock_n = stock_id(message[5:])
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(stock_n)])
     elif "天氣" in message:
@@ -63,11 +61,9 @@ def handle_message(event):
     elif "關注清單" in message:
         watch_list_data = watch_list()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(watch_list_data))
-    elif "最新日期" in message:
+    elif "資料最新日期" in message:
         latest_date = latestdate()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(str(latest_date)))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
 #主程式 
 import os

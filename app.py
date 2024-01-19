@@ -63,8 +63,8 @@ def handle_message(event):
         stock_notify_data = main()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(stock_notify_data))
     elif "最新日期" in message:
-        latestdate = latestdate()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(latestdate)))
+        latest_date = latestdate()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(str(latest_date)))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 

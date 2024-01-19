@@ -3,9 +3,11 @@ import pandas as pd
 import talib
 from db_select import *
 import numpy as np
+from date import latestdate
 
 # 目前日期
 current_date = datetime.date.today()  # 這裡改成今天的日期
+latest_date = latestdate()
 # 策略設計
 # 步驟1: 獲取股價數據
 def get_stock_data(symbol):
@@ -99,21 +101,21 @@ def main():
             continue
     # 合併列表中的 DataFrame
     combined_signal = pd.DataFrame(total_signal)
-    combined_signal.to_csv('origin_combine.csv')
+    # combined_signal.to_csv('origin_combine.csv')
     combined_signal = combined_signal[combined_signal['Buy_Signal'] | combined_signal['Sell_Signal']]
-
     combined_signal = combined_signal.reindex(["SYMBOL","Date","Buy_Conditions_Met","Buy_Signal","Sell_Conditions_Met","Sell_Signal"], axis="columns")
-    combined_signal = combined_signal.loc[combined_signal['Date'] == '2024-01-15']
-
+    combined_signal = combined_signal.loc[combined_signal['Date'] == str(latest_date) ]
     combined_signal['Action'] = np.where(combined_signal['Buy_Signal'] == True, '買入時機', np.where(combined_signal['Sell_Signal'] == True, '賣出時機', '繼續持有'))
-    if combined_signal.empty:
-        print("今日無適當進出場時機，繼續持有等待時機!")
-    else:    
-        for index, row in combined_signal.iterrows():
-            print(f"股票代號: {row['SYMBOL']}")
-            print(f"Date: {row['Date']}")
-            print(f"關注: {row['Action']}")
-            print("-------------------")
+    # if combined_signal.empty:
+    #     print("今日無適當進出場時機，繼續持有等待時機!")
+    # else:    
+    #     for index, row in combined_signal.iterrows():
+    #         print(f"股票代號: {row['SYMBOL']}")
+    #         print(f"Date: {row['Date']}")
+    #         print(f"關注: {row['Action']}")
+    #         print("-------------------")
     return ""
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
+    # result = main()
+    # result_into_db(result)

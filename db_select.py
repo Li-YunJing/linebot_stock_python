@@ -61,14 +61,3 @@ def select_stock_n():
     conn.close()
     unique_stock_name = [item[0] for item in unique_stock_name]
     return unique_stock_name
-
-
-# import yfinance as yf
-# result = select_data('2330.TW')
-# print(result)
-
-# stock_data = yf.download('2330.TW', start='2024-01-05')
-# print(stock_data)
-
-# for symbol in select_stock_n():
-#     print(symbol)

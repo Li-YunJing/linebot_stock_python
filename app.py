@@ -17,6 +17,7 @@ from stock_info import stock_id
 from weather import ask_weather
 from stock_notify import *
 from date import latestdate
+from watchlist import *
 #======python的函數庫、py檔==========
 
 app = Flask(__name__)
@@ -60,8 +61,8 @@ def handle_message(event):
         weather_feedback = ask_weather()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(weather_feedback))
     elif "關注清單" in message:
-        stock_notify_data = main()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(stock_notify_data))
+        watch_list_data = watch_list()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(watch_list_data))
     elif "最新日期" in message:
         latest_date = latestdate()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(str(latest_date)))
